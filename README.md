@@ -1,4 +1,4 @@
-Mounter
+RMC
 =======
 
 
@@ -8,17 +8,24 @@ Mounter
 ###E-mail: swapnil.udapure5@gmail.com###
 
 
-*Descrition: This application is used to protect hard disk partion from direct mouting by the user; hence every time the user attempts to mount any partition; the dialog will be showned to enter the correct password for the mounting partition respectively. The application is some what simmilar to Bit-Locker program of Windows System. With the help of this application the user can maintain different passwords for different drives/partitions respectively.*
+*Descrition: This application is used to control desktop from android application using android phones hotspot network; the application is simple but with limited functionality, the user can navigate through the user interface on their desktops, download files from the desktop, fire some terminal commands by opening the terminal window,browse the files/directories by using the defualt file browser respectively.The entire application is made in java so java sould be thier to do the job.*
+
+*Also while downloading any file using the android app, user can either shake(left jerk) the phone or press the button at the top right most corner of the application respectively.*
+
+*Application pre-requisites:*
+*Ubuntu (Any Version) Only(Will not work with any distributions other than ubuntu, except having GNOME desktop installed...)*
+*JDK, JRE(open-jdk-1.x.x)*
+*GNU Make 2.xx and above.*
+
+Now, How to use the application? first clone the repository; then follow the below explained instructions in order to install the application(both desktop and mobile side),once done then download and install the androind app from the link given below. After this; start your mobile hotspot network, and now start the RMC application on android side and enjoy.
+
+*NOTE: Here one think to note, in order to use the application one has to start the android phone hotspot not ubuntu/desktop hotspot respectively.*
 
 
-Depending on your Linux distribution kernel version; you must download the appropriate source from the repository;if you are using kernel version lower than 3.6 then download Mounter-0.0.1_Kernel-3.6; for kernel higher than 3.6 use Mounter-0.0.1_Kernel-High respectively.
-Also the given application is only applicable with 32-bit Linux system; for those who are using 64-bit then they have to wait for next realese of the program; thank you.
-
-
-This application comes in two parts kernel modules which handles the low level task of mounting partitions; and high level program which is completely made in java; hence JRE(Open-jdk-1.7.0) must installed in order to use this application. The application is in beta version; hence there are several bugs in the program. Any changes or contribution to the project is welcome, it is open source and freeware. The application here is not a complete full fledged application so use it on your own risk, Thank You...
+This application comes in two parts desktop side request handler which listens for the commands send by the android device and to execute these commands ; and android side application to control the desktop remotely; hence JRE(Open-jdk-1.7.0) must installed in order to use this application.. 
  
 ##This README explains the general usage information for using the makefile...##
-Mounter Application & Kernel Module Makefile Infomation...
+RMC Makefile Infomation...
 
 
 ##Common usage for the makefile is...##
@@ -27,56 +34,37 @@ Mounter Application & Kernel Module Makefile Infomation...
 
 Usage : 
 
-    sudo make [build|insert|remove|run|install|rm ext=<file_extension[class,txt,java,o,ko,etc...]>]
+    sudo make [build|install|rm ext=<file_extension[class,txt,java,jar,etc...]>]
 
-##In order to build all modules and all .java files do following##
-##This command will build both kernel modules as well as all java classess and finally builds jar file from it...
+##In order to build all modules i.e. all .java files do following##
 
-STEP-1: 
+STEP-1
 
-    sudo make build
+    cd path-to-rmc-dir
 
-##In order to install the build jar files and dependancy files following command will do the work...##
+##This command will build all java classess and finally builds jar file from it...
 
 STEP-2: 
 
-    sudo make install
+    make build
 
-*NOTE:Here one think to consider, the builded kernel modules are not going to be deployed/installed by defualt this is because the method for LKM installation varies from one distribution to another distribution; hence you need to manually install the kernel modules manually every time after the system boots, sorry for this inconvinience.*
-
-##After the application deployed the user can change or apply password to every individual partition of the system this can be done by using the following command...
-##Common Usage for the command is:
-
-    sudo make mounter -n <partition> -p <password>
-    
-
-##For Inserting Kernel module...##
+##In order to install the build jar files and dependancy files following command will do the work...##
 
 STEP-3: 
 
-    sudo make insert
-
-##above command will insert both kernel modules...
-
-##For running java program...##
-
-STEP-4: 
-
-    sudo make run
+    make install
 
 
-*NOTE:here note the above command / the java application must be run after the kernel modules inserted...*
+##After the application deployed the user can now control desktop from android RMC application; you can download and install the app from following link.
 
+    https://www.dropbox.com/s/688i6i2zjhtegp7/RMC.apk?dl=0
 
-##For removing Kernel modules...##
-
-    sudo make remove
 
 ##In order to remove unwanted files from CWD...##
 
     sudo make rm ext=<file_extension[jpg,txt,java,o,ko,etc...]>
 
-NOTE: In order to build or compile java files or kernel modules for the purpose of debugging see the appropriate enrty labels in the makefile
+NOTE: In order to build or compile java files for the purpose of debugging see the appropriate enrty labels in the makefile
 for individually building or compiling the programs respectively.Also if the makefile is modified then do not forget to update this file.
 
 For any other additional details see makefile...
